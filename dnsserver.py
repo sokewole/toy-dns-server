@@ -12,6 +12,8 @@ import asyncudp
 import dnsparser
 import dnsfactory
 
+import random
+
 
 class RootDnsServerIPs(enum.Enum):
     A = '198.41.0.4'
@@ -27,6 +29,9 @@ class RootDnsServerIPs(enum.Enum):
     K = '193.0.14.129'
     L = '199.7.83.42'
     M = '202.12.27.33'
+    N = '93.184.216.34'
+    O = '34.241.253.213'
+    P = '52.48.52.214'
 
     @classmethod
     def values(cls) -> List:
@@ -149,6 +154,11 @@ class DNSServer:
             received_data = await self.make_request(ip, 53, data)
             if received_data:
                 return received_data
+
+    # Temporarily commented out to test the more guessable / query ID and original source port        
+    # def generate_random_port ():
+    # # Chooses a more guessable port
+    #     return random.randint(40000, 40010)
 
     async def make_request(self, host, port, data):
         try:
